@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Anime World</title>
+  <link rel="stylesheet" href="stle.css">
+  <script src="scrit.js" defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #121737, #2e5780);
+  color: #ddd;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body.light-theme {
+  background: linear-gradient(45deg, #f0f0f0, #d0e4ff);
+  color: #333;
+}
+body.light-theme .card, body.light-theme .modal-content {
+  background: #fff;
+  border: 1px solid #ccc;
+}
+header {
+  background: linear-gradient(45deg, #0c141a, #456880);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  opacity: 0.9;
+  z-index: 1;
+  width: 100%;
+}
+header h1 {
+  font-size: 2rem;
+}
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+}
+header nav {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem;
+}
+header nav a:hover {
+  text-decoration: underline;
+  background-color: gray;
+  color: #333;
+  border-radius: 5px;
+}
+.searchBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+}
+.searchBar input {
+  border-radius: 14px;
+  border-color: #ddd;
+  width: 40%;
+  height: 40px;
+  margin-right: 10px;
+}
+#searchButton, #clearSearch, #themeToggle {
+  background-color: #153a50;
+  border-radius: 40px;
+  border-color: #ddd;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  height: 40px;
+  width: 90px;
+  cursor: pointer;
+}
+#searchButton:hover, #clearSearch:hover, #themeToggle:hover {
+  transform: scale(1.1);
+}
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+#genreFilter, #sortOptions {
+  height: 40px;
+  border-radius: 14px;
+  padding: 5px;
+}
+main {
+  padding: 2rem;
+}
+.anime-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  background: #121737;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  width: 250px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.card.favorited {
+  border: 2px solid red;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.card:hover .info {
+  transform: translateY(0);
+}
+.card:hover .short-desc {
+  display: none;
+}
+.favorite-btn, #submitComment {
+  position: relative;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: wheat;
+  border: none;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.card:hover .favorite-btn {
+  opacity: 1;
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+}
+.star {
+  cursor: pointer;
+  color: #ddd;
+  font-size: 1.2rem;
+}
+.star.filled {
+  color: gold;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #121737;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  color: white;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.modal.active {
+  display: flex;
+}
+#commentInput {
+  width: 100%;
+  height: 60px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: white;
+  display: none;
+}
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #121737;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px 18px;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+#backToTop:hover {
+  background: #181e3e;
+  transform: scale(1.3);
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.social-icons img {
+  width: 30px;
+  margin: 0 10px;
+  transition: transform 0.3s;
+  border-radius: 17px;
+}
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+@media (max-width: 600px) {
+  .hamburger {
+    display: block;
+  }
+  header nav {
+    display: none;
+    flex-direction: column;
+    background: #333;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+    padding: 1rem 0;
+  }
+  header nav.active {
+    display: flex;
+  }
+  header nav a {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+  .searchBar, .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .searchBar input, #genreFilter, #sortOptions {
+    width: 80%;
+    height: 35px;
+  }
+  #searchButton, #clearSearch, #themeToggle {
+    width: 120px;
+    height: 35px;
+  }
+  .card {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .card img {
+    max-height: 250px;
+  }
+  .card .info h3 {
+    font-size: 1.2rem;
+  }
+  .card .info p {
+    font-size: 0.8rem;
+  }
+  .card .short-desc {
+    font-size: 0.75rem;
+  }
+  .favorite-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+  .social-icons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .social-icons img {
+    margin: 5px 0;
+  }
+  #backToTop {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hamburger">☰</div>
+    <h1>My Anime World</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#trending">Trending</a>
+      <a href="#genres">Genres</a>
+      <a href="#favorites">Favorites</a>
+      <a href="#community">Join Community</a>
+    </nav>
+    <div class="searchBar">
+      <input type="text" id="search" placeholder="Search by title, genre, or rating..." aria-label="Search for anime">
+      <button id="searchButton" aria-label="Search for anime">Search</button>
+      <button id="clearSearch" aria-label="Clear search">Clear</button>
+    </div>
+    <div class="filters">
+      <select id="genreFilter">
+        <option value="">All Genres</option>
+      </select>
+      <select id="sortOptions">
+        <option value="title-asc">Title (A-Z)</option>
+        <option value="title-desc">Title (Z-A)</option>
+        <option value="rating-desc">Rating (High to Low)</option>
+      </select>
+      <button id="themeToggle" aria-label="Toggle light/dark theme">Toggle Theme</button>
+    </div>
+  </header>
+  <main>
+    <h2>Anime List</h2>
+    <div id="loader" class="loader">Loading...</div>
+    <section id="animeList" class="anime-cards"></section>
+    <section id="favorites" style="display: none;">
+      <h2>Your Favorites</h2>
+      <div id="favoritesList" class="anime-cards"></div>
+    </section>
+  </main>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close" aria-label="Close modal" tabindex="0">×</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <button id="backToTop" aria-label="Back to top">↑</button>
+  <footer>
+    <p>© 2025 My Anime World By Mohammed (Baba). All rights reserved.</p>
+    <div class="social-icons">
+      <img src="https://via.placeholder.com/30?text=FB" alt="Facebook icon">
+      <img src="https://via.placeholder.com/30?text=TW" alt="Twitter icon">
+      <img src="https://via.placeholder.com/30?text=IG" alt="Instagram icon">
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById('search');
+  const searchButton = document.getElementById('searchButton');
+  const clearSearch = document.getElementById('clearSearch');
+  const genreFilter = document.getElementById('genreFilter');
+  const sortOptions = document.getElementById('sortOptions');
+  const themeToggle = document.getElementById('themeToggle');
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+  const closeModal = document.getElementById('closeModal');
+  const backToTop = document.getElementById('backToTop');
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  const loader = document.getElementById('loader');
+  const animeList = document.getElementById('animeList');
+  const favoritesSection = document.getElementById('favorites');
+  const favoritesList = document.getElementById('favoritesList');
+
+  // Debounce utility
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  // Theme toggle
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+  }
+  themeToggle.addEventListener('click', function () {
+    document.body.classList.toggle('light-theme');
+    localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+  });
+
+  // Fetch genres for filter
+  async function fetchGenres() {
+    try {
+      const response = await fetch('https://api.jikan.moe/v4/genres/anime');
+      const data = await response.json();
+      data.data.forEach(genre => {
+        const option = document.createElement('option');
+        option.value = genre.name;
+        option.textContent = genre.name;
+        genreFilter.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error fetching genres:', error);
+    }
+  }
+
+  // Fetch and render anime
+  async function fetchAnime() {
+    loader.style.display = 'block';
+    const cached = localStorage.getItem('animeCache');
+    let data;
+    if (cached) {
+      data = JSON.parse(cached);
+    } else {
+      try {
+        const response = await fetch('https://api.jikan.moe/v4/anime');
+        data = await response.json();
+        localStorage.setItem('animeCache', JSON.stringify(data));
+      } catch (error) {
+        console.error('Error fetching anime:', error);
+        loader.style.display = 'none';
+        return;
+      }
+    }
+    renderAnime(data.data);
+    loader.style.display = 'none';
+  }
+
+  function renderAnime(animeData) {
+    animeList.innerHTML = '';
+    animeData.forEach((anime, index) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.setAttribute('data-title', anime.title);
+      card.setAttribute('data-genre', anime.genres.map(g => g.name).join(','));
+      card.setAttribute('data-rating', anime.score || 4); // Fallback rating
+      card.setAttribute('data-episodes', anime.episodes || 'Unknown');
+      card.setAttribute('data-year', anime.year || 'Unknown');
+      card.setAttribute('data-trailer', anime.trailer?.url || 'https://example.com');
+      card.innerHTML = `
+        <img src="${anime.images.jpg.image_url || 'https://via.placeholder.com/250x300?text=' + anime.title}" alt="${anime.title}" loading="lazy">
+        <div class="info">
+          <h3>${anime.title}</h3>
+          <p>Genre: ${anime.genres.map(g => g.name).join(', ')}</p>
+          <div class="rating" data-title="${anime.title}">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" aria-label="Toggle favorite">Add to Favorites</button>
+          <p class="short-desc">${anime.synopsis ? anime.synopsis.slice(0, 100) + '...' : 'No description available.'}</p>
+        </div>
+      `;
+      animeList.appendChild(card);
+    });
+    attachCardListeners();
+    updateFavoriteStyles();
+    updateRatings();
+  }
+
+  // Attach event listeners to cards
+  function attachCardListeners() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('click', function (e) {
+        if (e.target.classList.contains('favorite-btn') || e.target.classList.contains('star')) return;
+        const title = card.getAttribute('data-title');
+        const description = card.querySelector('.short-desc').textContent;
+        const image = card.querySelector('img').src;
+        const episodes = card.getAttribute('data-episodes');
+        const year = card.getAttribute('data-year');
+        const trailer = card.getAttribute('data-trailer');
+        modalContent.innerHTML = `
+          <h2>${title}</h2>
+          <img src="${image}" alt="${title}" style="width:100%;">
+          <p>${description}</p>
+          <p>Episodes: ${episodes}</p>
+          <p>Year: ${year}</p>
+          <a href="${trailer}" target="_blank">Watch Trailer</a>
+          <button onclick="shareToTwitter('${title}', '${window.location.href}')">Share to Twitter</button>
+          <h3>Comments</h3>
+          <div id="comments"></div>
+          <textarea id="commentInput" placeholder="Add a comment..." aria-label="Add comment"></textarea>
+          <button id="submitComment" aria-label="Submit comment">Submit</button>
+        `;
+        modal.classList.add('active');
+        loadComments(title);
+        document.getElementById('submitComment').addEventListener('click', submitCommentHandler);
+      });
+    });
+    // Favorite buttons
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+      button.setAttribute('tabindex', '0');
+      button.addEventListener('click', toggleFavorite);
+      button.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') this.click();
+      });
+    });
+    // Rating stars
+    document.querySelectorAll('.rating').forEach(rating => {
+      const title = rating.getAttribute('data-title');
+      rating.querySelectorAll('.star').forEach(star => {
+        star.setAttribute('tabindex', '0');
+        star.addEventListener('click', function () {
+          const value = this.getAttribute('data-value');
+          localStorage.setItem(`rating-${title}`, value);
+          updateRatings();
+        });
+        star.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') this.click();
+        });
+      });
+    });
+  }
+
+  // Toggle favorite
+  function toggleFavorite() {
+    const card = this.closest('.card');
+    const title = card.getAttribute('data-title');
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.includes(title)) {
+      favorites = favorites.filter(fav => fav !== title);
+      this.textContent = 'Add to Favorites';
+      alert(`${title} removed from favorites!`);
+    } else {
+      favorites.push(title);
+      this.textContent = 'Remove from Favorites';
+      alert(`${title} added to favorites!`);
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    updateFavoriteStyles();
+  }
+
+  // Update favorite styles
+  function updateFavoriteStyles() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    document.querySelectorAll('.card').forEach(card => {
+      const title = card.getAttribute('data-title');
+      card.classList.toggle('favorited', favorites.includes(title));
+      const btn = card.querySelector('.favorite-btn');
+      if (btn) btn.textContent = favorites.includes(title) ? 'Remove from Favorites' : 'Add to Favorites';
+    });
+  }
+
+  // Update ratings
+  function updateRatings() {
+    document.querySelectorAll('.rating').forEach(rating => {
+      const title = rating.getAttribute('data-title');
+      const userRating = localStorage.getItem(`rating-${title}`) || 0;
+      rating.querySelectorAll('.star').forEach(star => {
+        star.classList.toggle('filled', star.getAttribute('data-value') <= userRating);
+      });
+    });
+  }
+
+  // Load comments
+  function loadComments(title) {
+    const comments = JSON.parse(localStorage.getItem(`comments-${title}`)) || [];
+    const commentsDiv = document.getElementById('comments');
+    commentsDiv.innerHTML = comments.map(c => `<p>${c}</p>`).join('');
+  }
+
+  // Submit comment
+  function submitCommentHandler() {
+    const title = modalContent.querySelector('h2').textContent;
+    const comment = document.getElementById('commentInput').value;
+    if (comment) {
+      const comments = JSON.parse(localStorage.getItem(`comments-${title}`)) || [];
+      comments.push(comment);
+      localStorage.setItem(`comments-${title}`, JSON.stringify(comments));
+      loadComments(title);
+      document.getElementById('commentInput').value = '';
+    }
+  }
+
+  // Share to Twitter
+  window.shareToTwitter = function (title, url) {
+    window.open(`https://twitter.com/intent/tweet?text=Check out ${title}!&url=${url}`, '_blank');
+  };
+
+  // Search functionality
+  function performSearch() {
+    loader.style.display = 'block';
+    setTimeout(() => {
+      const query = searchInput.value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const genre = card.getAttribute('data-genre').toLowerCase();
+        const rating = card.getAttribute('data-rating');
+        card.style.display = title.includes(query) || genre.includes(query) || rating.includes(query) ? 'block' : 'none';
+      });
+      loader.style.display = 'none';
+    }, 500);
+  }
+
+  searchInput.addEventListener('keyup', debounce(performSearch, 300));
+  searchButton.addEventListener('click', performSearch);
+  clearSearch.addEventListener('click', function () {
+    searchInput.value = '';
+    document.querySelectorAll('.card').forEach(card => (card.style.display = 'block'));
+  });
+
+  // Genre filter
+  genreFilter.addEventListener('change', function () {
+    const selectedGenre = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const genres = card.getAttribute('data-genre').toLowerCase();
+      card.style.display = selectedGenre === '' || genres.includes(selectedGenre) ? 'block' : 'none';
+    });
+  });
+
+  // Sort options
+  sortOptions.addEventListener('change', function () {
+    const sortBy = this.value;
+    const cards = Array.from(document.querySelectorAll('.card'));
+    cards.sort((a, b) => {
+      if (sortBy === 'title-asc') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+      if (sortBy === 'title-desc') return b.getAttribute('data-title').localeCompare(a.getAttribute('data-title'));
+      if (sortBy === 'rating-desc') return b.getAttribute('data-rating') - a.getAttribute('data-rating');
+    });
+    animeList.innerHTML = '';
+    cards.forEach(card => animeList.appendChild(card));
+  });
+
+  // Display favorites
+  function displayFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favoritesList.innerHTML = '';
+    favorites.forEach(title => {
+      const card = document.querySelector(`.card[data-title="${title}"]`);
+      if (card) {
+        const clone = card.cloneNode(true);
+        clone.querySelector('.favorite-btn').textContent = 'Remove from Favorites';
+        clone.querySelector('.favorite-btn').addEventListener('click', toggleFavorite);
+        favoritesList.appendChild(clone);
+      }
+    });
+  }
+
+  document.querySelector('a[href="#favorites"]').addEventListener('click', function (e) {
+    e.preventDefault();
+    animeList.style.display = 'none';
+    favoritesSection.style.display = 'block';
+    displayFavorites();
+  });
+
+  document.querySelector('a[href="#home"]').addEventListener('click', function (e) {
+    e.preventDefault();
+    animeList.style.display = 'block';
+    favoritesSection.style.display = 'none';
+  });
+
+  // Modal close
+  closeModal.addEventListener('click', function () {
+    modal.classList.remove('active');
+  });
+  closeModal.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') this.click();
+  });
+
+  // Back to top
+  window.addEventListener('scroll', function () {
+    backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+  });
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Hamburger menu
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+
+  // Initialize
+  fetchGenres();
+  fetchAnime();
+});
+  </script>
+</body>
+</html>
