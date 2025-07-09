@@ -129,6 +129,20 @@ header nav a:hover {
   color: #333;
   border-radius: 5px;
 }
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.5rem 0;
+}
+#genreFilter, #sortOptions {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 20px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
 .searchBar {
   width: 100%;
   display: flex;
@@ -254,7 +268,7 @@ main {
   opacity: 1;
 }
 footer {
-  background-color: #333;
+  background-color: #0a1120;
   color: white;
   text-align: center;
   padding: 1rem;

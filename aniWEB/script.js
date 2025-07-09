@@ -59,6 +59,33 @@ document.getElementById('searchButton').addEventListener('click', function() {
 });
 
 
+  // Genre filter
+    const genreFilter = document.getElementById('genreFilter');
+  genreFilter.addEventListener('change', function () {
+    const selectedGenre = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const genres = card.getAttribute('data-genre').toLowerCase();
+      card.style.display = selectedGenre === '' || genres.includes(selectedGenre) ? 'block' : 'none';
+    });
+  });
+
+  // Sort options
+    const sortOptions = document.getElementById('sortOptions');
+  sortOptions.addEventListener('change', function () {
+    const sortBy = this.value;
+    const cards = Array.from(document.querySelectorAll('.card'));
+    cards.sort((a, b) => {
+      if (sortBy === 'title-asc') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+      if (sortBy === 'title-desc') return b.getAttribute('data-title').localeCompare(a.getAttribute('data-title'));
+      if (sortBy === 'rating-desc') return b.getAttribute('data-rating') - a.getAttribute('data-rating');
+    });
+    const animeList = document.getElementById('animeList');
+    animeList.innerHTML = '';
+    cards.forEach(card => animeList.appendChild(card));
+    attachCardListeners();
+  });
+
 
 const searchInput = document.getElementById('search');
   const cards = document.querySelectorAll('.card');
