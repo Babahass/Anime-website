@@ -60,16 +60,14 @@ document.getElementById('searchButton').addEventListener('click', function() {
 
 
   // Genre filter
-    const genreFilter = document.getElementById('genreFilter');
   genreFilter.addEventListener('change', function () {
-    const selectedGenre = this.value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      const genres = card.getAttribute('data-genre').toLowerCase();
-      card.style.display = selectedGenre === '' || genres.includes(selectedGenre) ? 'block' : 'none';
-    });
+  const selectedGenre = this.value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const genres = card.getAttribute('data-genre').toLowerCase().split(',');
+    card.style.display = selectedGenre === '' || genres.includes(selectedGenre) ? 'block' : 'none';
   });
-
+});
   // Sort options
     const sortOptions = document.getElementById('sortOptions');
   sortOptions.addEventListener('change', function () {
