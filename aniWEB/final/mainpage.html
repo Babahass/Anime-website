@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime World</title>
+  <link rel="icon" type="png" href="../image/AOT.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    
+  <div id="sidebar" class="sidebar">
+    <button id="closeSidebar">×</button>
+    <div id="sidebarContent"></div>
+  </div>
+
+    <div class="header-content container">
+      <div class="logo">
+        <h1>Anime World</h1>
+      </div>
+      <span class="hamburger">☰</span>
+      <nav>
+        <ul>
+          <li><a href="mainpage.html" class="active">Home</a></li>
+          <li><a href="#">Popular</a></li>
+          <li><a href="#popular">Trending</a></li>
+          <li><a href="fav.html">Favorites</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search Anime...">
+        <button id="searchButton">🔍</button>
+      </div>
+      <button id="themeToggle">🌙</button>
+    </div>
+  </header>
+ 
+ <main class="main-container">
+  <div id="filtersSidebar" class="filters-sidebar">
+    <div class="genre-buttons">
+      <h3>Genres</h3>
+      <button class="filter-btn active" data-genre="">All Genres</button>
+      <button class="filter-btn" data-genre="action">Action</button>
+      <button class="filter-btn" data-genre="thriller">Thriller</button>
+      <button class="filter-btn" data-genre="supernatural">Supernatural</button>
+      <button class="filter-btn" data-genre="adventure">Adventure</button>
+      <button class="filter-btn" data-genre="mystery">Mystery</button>
+      <button class="filter-btn" data-genre="fantasy">Fantasy</button>
+    </div>
+    <div class="sort-buttons">
+      <h3>Sort By</h3>
+      <button class="sort-btn active" data-sort="title-asc">Title (A-Z)</button>
+      <button class="sort-btn" data-sort="title-desc">Title (Z-A)</button>
+      <button class="sort-btn" data-sort="rating-desc">Rating (High to Low)</button>
+    </div>
+  </div>
+     
+    <div class="anime-cards">
+      <h2>Popular</h2>
+      <div class="anime-cards popular" id="popular">
+        <div class="card" data-title="Naruto" data-genre="action,adventure,martial arts,shounen,supernatural" data-episodes="720" data-rating="8.3/10" data-year="2002" data-trailer="https://www.youtube.com/watch?v=j2hiC9BmJlQ">
+          <img src="../image/naruto.jpg" alt="Naruto" loading="lazy">
+          <div class="info">
+            <h2>Naruto</h2>
+            <p>Genre: Action, Adventure, Martial Arts, Shounen, Supernatural</p>
+          <div class="rating" data-title="Naruto">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Naruto">Add to Favorites</button>
+          </div>
+           <p class="short-desc">Naruto Uzumaki, a young ninja, dreams of becoming Hokage despite being shunned for the nine-tailed fox sealed inside him.</p>
+        </div>
+
+        <div class="card" data-title="One Piece" data-genre="action,adventure,comedy,shounen,supernatural,drama" data-episodes="1000+" data-rating="8.9/10" data-year="1999" data-trailer="https://www.youtube.com/watch?v=Ades3pQfx6o">
+          <img src="../image/one_piece.jpg" alt="One Piece" loading="lazy">
+          <div class="info">
+            <h2>One Piece</h2>
+            <p>Genre: Action, Adventure, Comedy, Shounen, Supernatural, Drama</p>
+          <div class="rating" data-title="One Piece">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="One Piece">Add to Favorites</button>
+          </div>
+            <p class="short-desc">Monkey D. Luffy, a young pirate with a rubber-like body, sets out to find the legendary treasure One Piece.</p>
+        </div>
+
+        <div class="card" data-title="Dragon balls" data-genre="action,adventure,comedy,shounen,supernatural,fantasy" data-episodes="639+" data-rating="8.4/10" data-year="1989" data-trailer="https://www.youtube.com/watch?v=Ades3pQfx6o">
+          <img src="../image/DBZ.jpg" alt="Dragon balls" loading="lazy">
+          <div class="info">
+            <h2>Dragon Balls series</h2>
+            <p>Genre: Action, Adventure, Comedy, Shounen, Supernatural, Fantasy</p>
+          <div class="rating" data-title="Dragon balls">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Dragon balls">Add to Favorites</button>
+          </div>
+            <p class="short-desc">Goku and his friends as they fight powerful enemies and seek the Dragon Balls in a world full of Advantureand epic battles.</p>
+        </div>
+
+        <div class="card" data-title="Bleach" data-genre="action,supernatural,adventure,shounen" data-episodes="366+" data-rating="8.2/10" data-year="2004" data-trailer="https://www.youtube.com/watch?v=1X5yV4gyw5Q">
+          <img src="../image/bleach.jpg" alt="Bleach" loading="lazy">
+          <div class="info">
+            <h2>Bleach</h2>
+            <p>Genre: Action, Supernatural, Adventure, Shounen</p>
+          <div class="rating" data-title="Bleach">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Bleach">Add to Favorites</button>
+          </div>
+            <p class="short-desc">Ichigo Kurosaki, a teenager, becomes a Soul Reaper to fight evil spirits and protect the living world.</p>
+        </div>
+      </div>
+      <h2>Trending</h2>
+      <div class="anime-cards trending" id="trending">
+
+        <div class="card" data-title="Attack On Titan" data-genre="action,adventure,military,dark fantasy,mystery,drama" data-episodes="87" data-rating="9.0/10" data-year="2013" data-trailer="https://www.youtube.com/watch?v=MGRm4IzK1SQ">
+          <img src="../image/AOT.jpg" alt="Attack On Titan" loading="lazy">
+           <div class="info">
+            <h2>Attack On Titan</h2>
+            <p>Genre: Action, Adventure, Military, Dark Fantasy, Mystery, Drama</p>
+          <div class="rating" data-title="Attack On Titan">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Attack On Titan">Add to Favorites</button>
+           </div>
+            <p class="short-desc">Humanity fights for survival against giant Titans in a post-apocalyptic world.</p>
+        </div>
+        <div class="card" data-title="Demon Slayer" data-genre="action,adventure,dark fantasy,supernatural,shounen" data-episodes="37+" data-rating="8.6/10" data-year="2019" data-trailer="https://www.youtube.com/watch?v=VQGCKyvzNHQ">
+          <img src="../image/demon slayer.jpg" alt="Demon Slayer" loading="lazy">
+          <div class="info">
+            <h2>Demon Slayer</h2>
+            <p>Genre: Action, Adventure, Dark Fantasy, Supernatural, Shounen</p>
+          <div class="rating" data-title="Demon Slayer">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Demon Slayer">Add to Favorites</button>
+          </div>
+            <p class="short-desc">Tanjiro Kamado becomes a demon slayer to save his sister and avenge his family.</p>
+        </div>
+         <div class="card" data-title="Jujutsu Kaisen" data-genre="action,supernatural,shounen,dark fantasy" data-episodes="24" data-rating="8.7/10" data-year="2020" data-trailer="https://www.youtube.com/watch?v=pkKu9hLT-t8">
+          <img src="../image/Jujutsu Kaisen.jpg" alt="Jujutsu Kaisen" loading="lazy">
+          <div class="info">
+            <h2>Jujutsu Kaisen</h2>
+            <p>Genre: Action, Supernatural, Shounen, Dark Fantasy</p>
+            <div class="rating" data-title="Jujutsu Kaisen">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+            <button class="favorite-btn" data-title="Jujutsu Kaisen">Add to Favorites</button>
+          </div>
+           <p class="short-desc">Itadori Yuji becomes involved in the world of sorcery after swallowing cursed object.</p>
+        </div>
+
+        <div class="card" data-title="Solo Leveling" data-genre="action,fantasy,adventure,supernatural,system" data-episodes="24" data-rating="8.8/10" data-year="2024" data-trailer="https://www.youtube.com/watch?v=3wLR0zAL7PA">
+          <img src="../image/solo.jpg" alt="Solo Leveling" loading="lazy">
+           <div class="info">
+            <h2>Solo Leveling</h2>
+            <p>Genre: Action, Fantasy, Adventure, Supernatural, System</p>
+          <div class="rating" data-title="Solo Leveling">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Solo Leveling">Add to Favorites</button>
+         </div>
+            <p class="short-desc">Jinwoo Sung, a weak hunter, gains a mysterious system to level up infinitely.</p>
+        </div>
+      </div>
+
+      <h2>Anime List</h2>
+      <div class="anime-cards">
+        
+        <div class="card" data-title="Death Note" data-genre="psychological,supernatural,crime,drama,mystery" data-episodes="37" data-rating="8.6/10" data-year="2006" data-trailer="https://www.youtube.com/watch?v=8tL2kC4Wa4Q">
+          <img src="../image/death note.jpg" alt="Death Note" loading="lazy">
+          <div class="info">
+            <h2>Death Note</h2>
+            <p>Genre: Psychological, Supernatural, Crime, Drama, Mystery</p>
+          <div class="rating" data-title="Death Note">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Death Note">Add to Favorites</button>
+          </div>
+            <p class="short-desc">Light Yagami finds a supernatural notebook that allows him to kill anyone by writing their name.</p>
+        </div>
+      
+        <div class="card" data-title="Black Clover" data-genre="action,adventure,fantasy,magic,shounen" data-episodes="170" data-rating="8.1/10" data-year="2017" data-trailer="https://www.youtube.com/watch?v=8X7fE2gYxU0">
+          <img src="../image/black clover.jpg" alt="Black Clover" loading="lazy">
+           <div class="info">
+            <h2>Black Clover</h2>
+            <p>Genre: Action, Adventure, Fantasy, Magic, Shounen</p>
+          <div class="rating" data-title="Black Clover">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Black Clover">Add to Favorites</button>
+         </div>
+            <p class="short-desc">Asta, a magic-less boy, aims to become the Wizard King in a world full of magic.</p>
+        </div>
+        <div class="card" data-title="Hunter x Hunter" data-genre="action,adventure,fantasy,supernaturalshounen" data-episodes="148" data-rating="8.8/10" data-year="2011" data-trailer="https://www.youtube.com/watch?v=8X7fE2gYxU0">
+          <img src="../image/hxh.jpg" alt="HunterxHunter" loading="lazy">
+           <div class="info">
+            <h2>HunterxHunter</h2>
+            <p>Genre: Action,Adventure,Fantasy,Supernatural,Shounen</p>
+          <div class="rating" data-title="Hunter x Hunter">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Hunter x Hunter ">Add to Favorites</button>
+         </div>
+            <p class="short-desc">The story follows Gon Freecss, a boy who dreams of becoming a Hunter like his father . along his journey he meets friends and faces dangerous trials in a world full powerful Nen users.</p>
+        </div>
+        <div class="card" data-title="Boruto" data-genre="action,adventure,martial arts,supernatural" data-episodes="293" data-rating="7.8/10" data-year="2017" data-trailer="https://www.youtube.com/watch?v=A5weUhN3EDM">
+          <img src="../image/boruto.jpg" alt="Boruto" loading="lazy">
+           <div class="info">
+            <h2>Boruto</h2>
+            <p>Genre: Action, Adventure, Martial Arts, Supernatural</p>
+          <div class="rating" data-title="Boruto">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Boruto">Add to Favorites</button>
+         </div>
+            <p class="short-desc">Boruto Uzumaki, son of Naruto, navigates his own path as a ninja.</p>
+        </div>
+        <div class="card" data-title="Tokyo Ghoul" data-genre="action,dark fantasy,seinen,supernatural,psychological" data-episodes="48" data-rating="7.9/10" data-year="2014" data-trailer="https://www.youtube.com/watch?v=9BzvUzZ1yO8">
+          <img src="../image/tokyo ghoul.jpg" alt="Tokyo Ghoul" loading="lazy">
+          <div class="info">
+          <h2>Tokyo Ghoul</h2>
+            <p>Genre: Action, Dark Fantasy, Seinen, Supernatural, Psychological</p>
+          <div class="rating" data-title="Tokyo Ghoul">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Tokyo Ghoul">Add to Favorites</button>
+            </div>
+            <p class="short-desc">Ken Kaneki becomes a half-ghoul after a deadly encounter and must navigate his new life.</p>
+        </div>
+        <div class="card" data-title="Tokyo Revengers" data-genre="action,shounen,time-travel,drama" data-episodes="50" data-rating="8.0/10" data-year="2021" data-trailer="https://www.youtube.com/watch?v=1o4GGL8gXQk">
+          <img src="../image/tokyo revengers.jpg" alt="Tokyo Revengers" loading="lazy">
+          <div class="info">
+            <h2>Tokyo Revengers</h2>
+            <p>Genre: Action, Shounen, Time-Travel, Drama</p>
+          <div class="rating" data-title="Tokyo Revengers">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Tokyo Revengers">Add to Favorites</button>
+          </div>
+            <p class="short-desc">Takemichi Hanagaki time-travels to his middle school days to prevent a tragic future.</p>
+        </div>
+        <div class="card" data-title="Chainsaw man" data-genre="action,dark fantasy,supernatural,horror" data-episodes="12" data-rating="8.3/10" data-year="2022" data-trailer="https://www.youtube.com/watch?v=3wLR0zAL7PA">
+          <img src="../image/chainsaw man.jpg" alt="chainsaw man" loading="lazy">
+           <div class="info">
+            <h2>Chainsaw man</h2>
+            <p>Genre: Action,Dark Fantasy, Horror, Supernatural</p>
+          <div class="rating" data-title="Chainsaw man">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Chainsaw man">Add to Favorites</button>
+         </div>
+            <p class="short-desc">Denji, a devil hunter, merges with a chainsaw devil to fight demons for a better life.</p>
+        </div>
+        <div class="card" data-title="One Punch Man" data-genre="action,comedy,supernatural" data-episodes="24" data-rating="8.5/10" data-year="2015" data-trailer="https://www.youtube.com/watch?v=km2OPUctni4">
+          <img src="../image/one punch man.jpg" alt="One Punch Man" loading="lazy">
+           <div class="info">
+            <h2>One Punch Man</h2>
+            <p>Genre: Action, Comedy, Supernatural</p>
+          <div class="rating" data-title="One Punch Man">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="One Punch Man">Add to Favorites</button>
+         </div>
+            <p class="short-desc">Saitama, a hero who defeats any opponent with one punch, seeks a worthy challenge.</p>
+        </div>
+        <div class="card" data-title="Hell's Paradise" data-genre="action,dark fantasy,supernatural,adventure" data-episodes="13" data-rating="8.3/10" data-year="2023" data-trailer="https://www.youtube.com/watch?v=83r2DN8gSDk">
+          <img src="../image/hells paradise.jpg" alt="Hell's Paradise" loading="lazy">
+          <div class="info">
+            <h2>Hell's Paradise</h2>
+            <p>Genre: Action, Dark Fantasy, Supernatural, Adventure</p>
+          <div class="rating" data-title="Hell's Paradise">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Hell's Paradise">Add to Favorites</button>
+          </div>
+           <p class="short-desc">Gabimaru the Hollow seeks the elixir of immortality on a dangerous island.</p>
+          </div>
+         
+          <div class="card" data-title="Monster" data-genre="drama,psychological,thriller,mystery" data-episodes="74" data-rating="8.6/10" data-year="2004" data-trailer="https://www.youtube.com/watch?v=83r2DN8gSDk">
+          <img src="../image/monster.jpg" alt="Monster" loading="lazy">
+          <div class="info">
+            <h2>Monster</h2>
+            <p>Genre: Drama,Psychological,Thriller,Mystery</p>
+          <div class="rating" data-title="Monster">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Monster">Add to Favorites</button>
+          </div>
+           <p class="short-desc">Dr Tenma faces a moral crisis after saving aboy who becomes a dangerous psychopath.</p>
+          </div>
+
+          <div class="card" data-title="Mashel Magic and Muscle" data-genre="action,comedy,fantasy,magic" data-episodes="24" data-rating="7.8/10" data-year="20023" data-trailer="https://www.youtube.com/watch?v=83r2DN8gSDk">
+          <img src="../image/mashel.jpg" alt="Mashel magic and Muscle" loading="lazy">
+          <div class="info">
+            <h2>Mashel Magic and Muscle</h2>
+            <p>Genre: Action,Comedy,Fantasy,Magic</p>
+          <div class="rating" data-title="Mashel magic and Muscle">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Mashel magic and Muscle">Add to Favorites</button>
+          </div>
+           <p class="short-desc">Mash a magic-less boy with super strength, enrolls in magic school to become a Divine visionary.</p>
+          </div>
+
+          <div class="card" data-title="Classroom of the elite" data-genre="Psychological-thiller,Slice of life,Drama,mystery,school" data-episodes="37" data-rating="7.9/10" data-year="2017" data-trailer="https://www.youtube.com/watch?v=83r2DN8gSDk">
+          <img src="../image/CRE.jpg" alt="Classroom of the elite" loading="lazy">
+          <div class="info">
+            <h2>Classroom of The Elite</h2>
+            <p>Genre:Psychological-thiller,Slice of life,Drama,mystery,school</p>
+          <div class="rating" data-title="Classroom of the elite">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <button class="favorite-btn" data-title="Classroom of the elite">Add to Favorites</button>
+          </div>
+           <p class="short-desc">Kiyotaka Ayanokoji navigates a ruthless high school where students compete for status.</p>
+          </div>
+        <!-- More cards can go here -->
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop">↑ Back to Top</button>
+
+  <footer>
+    <p>© 2025 My Anime World By Mohammed (Baba). All rights reserved.</p>
+    <div class="social-icons">
+   <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-reddit"></i></a>
+      <!-- Add social icons if needed -->
+    </div>
+  </footer>
+</body>
+</html>

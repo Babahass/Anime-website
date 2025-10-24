@@ -1,21 +1,145 @@
+/* Add to CSS */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 body.light-theme {
   background: linear-gradient(45deg, #e6f0fa, #f5f8ff);
   color: #333;
 }
-body.light-theme .card, body.light-theme #sidebar {
+body.light-theme .card, body.light-theme #sidebar  {
   background: #fff;
   border: 1px solid #ccc;
 }
-body.light-theme header, body.light-theme footer {
+body.light-theme header, body.light-theme footer ,body.light-theme .filters-sidebar , body.light-theme #backToTop{
   background: #d0e4ff;
-  color: #333;
+  color: #111;
 }
-body.light-theme #searchButton, body.light-theme #clearSearch, body.light-theme #themeToggle {
+body.light-theme #clearSearch, body.light-theme #themeToggle {
   background: #3498db;
   color: #666;
   text-align: end;
 }
+body.light-theme .filters-sidebar, body.light-theme .filter-btn, body.light-theme .sort-btn {
+  background: #fff;
+  color: #111;
+}
+body.light-theme .filter-btn:hover, body.light-theme .sort-btn:hover{
+  background: #ccc;
+}
+body.light-theme .filter-btn.active, body.light-theme .sort-btn.active{
+  background-color: #3498db;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+/* Header Styles */
+header {
+  background: linear-gradient(45deg, #0a1120, #2a4a7b);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #2ecc71, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav a {
+  color: #777;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+nav a:hover, nav a.active {
+  color: #2ecc71;
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 8px 15px;
+  width: 300px;
+}
+
+.search-bar input {
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border-radius: 20px;
+}
+
+.search-bar button {
+  background: transparent;
+  border: none;
+  color: #2ecc71;
+  cursor: pointer;
+}
+/* Hero Section */
+.hero {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #2ecc71, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  color: #ccc;
+}
+
 .sidebar {
   position: fixed;
   right: -400px;
@@ -56,8 +180,8 @@ body.light-theme #searchButton, body.light-theme #clearSearch, body.light-theme 
   opacity: 1.0;
 }
 #sidebarContent img {
- height: 25vh;
- width: 30vh;
+  height: 25vh;
+  width: 30vh;
   border-radius: 9px;
 }
 #closeSidebar {
@@ -95,7 +219,7 @@ header {
 }
 header h1 {
   font-family: 'Comic Sans MS', cursive;
-  font-size: 2.rem;
+  font-size: 2rem;
   float: left;
   display: inline;
 }
@@ -108,77 +232,61 @@ header h1 {
   left: 1rem;
   cursor: pointer;
 }
-header nav {
-  margin-top: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-}
-header nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0.5rem 1rem;
-  padding: 0.5rem;
-  display: inline ;
-  flex-wrap: wrap;
-  margin: 10px;
-}
-header nav a:hover {
-  text-decoration: underline;
-  background-color: #3a5f8a;
-  color: #333;
-  border-radius: 5px;
+
+.filters-sidebar {
+  width: 20%;
+  padding: 1rem;
+  background: #1a1f3b;
+  border-right: 1px solid #ccc;
+  position: sticky;
+  top: 115px; /* Adjust based on your header height */
+  height: calc(100vh - 115px);
+  overflow-y: auto;
+  float: left;
 }
 
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 0.5rem 0;
+.filters-sidebar h3 {
+  color: #fff;
+  margin-bottom: 1rem;
 }
-#genreFilter, #sortOptions {
-  height: 40px;
-  padding: 0 10px;
-  border-radius: 20px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-}
-.searchBar {
+
+.filter-btn, .sort-btn {
+  display: block;
   width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: #2a5a8e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-align: left;
+}
+
+.filter-btn:hover, .sort-btn:hover {
+  background: #3a6ab8;
+}
+
+.filter-btn.active, .sort-btn.active {
+  background: #2ecc71;
+}
+
+.main-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 0;
-}
-.searchBar input {
-  border-radius: 14px;
-  border-color: #ddd;
-  width: 40%;
-  height: 40px;
-  margin-right: 10px;
-}
-#searchButton {
-  background: #1f4068;
-  border-radius: 40px;
-  border-color: #ddd;
-  color: white;
-  font-family: 'Comic Sans MS';
-  height: 40px;
-  width: 90px;
-}
-#searchButton:hover {
-  transform: scale(1.1);
-}
-main {
   padding: 2rem;
+  width: 100%;
 }
+
 .anime-cards {
+  width: 100%;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
-  position: relative;
+  float: left;
 }
+
 .anime-cards.loading {
   opacity: 0.5;
   transition: opacity 0.3s;
@@ -213,14 +321,14 @@ main {
 .anime-cards p {
   font-size: small;
 }
-.card h2{
+.card h2 {
   font-size: 16px;
 }
 .short-desc {
   display: block;
 }
 .anime-cards :hover {
-  transform: scale(1.1);
+  transform: scale(1.0);
 }
 .card {
   background: #1a1f3b;
@@ -234,6 +342,8 @@ main {
   overflow: hidden;
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
 }
 .card:hover {
   transform: scale(1.1);
@@ -242,13 +352,11 @@ main {
 .card img {
   width: 100%;
   height: 130px;
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 8px;
   transition: opacity 0.3s;
 }
-.card img[loading="lazy"] {
-  opacity: 0.7;
-}
+
 .card img:not([loading="lazy"]) {
   opacity: 1;
 }
@@ -264,12 +372,12 @@ main {
 .card:hover .short-desc {
   display: none;
 }
-.favorite-btn {
+.favorite-btn, .remove-fav-btn {
   position: relative;
   top: 10px;
   left: 0%;
   background-color: rgba(255, 0, 0, 0.8);
-  color: wheat;
+  color: white;
   border: none;
   padding: 8px 12px;
   font-size: 0.7rem;
@@ -278,8 +386,17 @@ main {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-.card:hover .favorite-btn {
+.card:hover .favorite-btn, .card:hover .remove-fav-btn {
   opacity: 1;
+}
+.modal-btn.remove-fav-btn {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 10px;
 }
 footer {
   background-color: #0a1120;
@@ -303,7 +420,7 @@ footer {
 }
 #backToTop:hover {
   background: #181e3e;
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
 .social-icons {
   display: flex;
@@ -341,16 +458,25 @@ footer {
     margin: 0.5rem 0;
     text-align: center;
   }
-  .searchBar {
+  .search-bar {
     gap: 10px;
   }
-  .searchBar input {
+  .search-bar input {
     width: 50%;
     height: 35px;
   }
   #searchButton {
     width: 70px;
     height: 35px;
+  }
+  
+  .filters-sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+  .main-container {
+    flex-direction: column;
   }
   .card {
     width: 31%;
@@ -373,7 +499,7 @@ footer {
   .card .short-desc {
     font-size: 0.4rem;
   }
-  .favorite-btn {
+  .favorite-btn, .remove-fav-btn {
     font-size: 0.4rem;
     padding: 4px 7px;
   }
@@ -383,14 +509,14 @@ footer {
     right: -100%;
     height: 50%;
   }
-  #sidebarContent img{
+  #sidebarContent img {
     height: 20vh;
     width: 24vh;
   }
-  #sidebarContent p{
+  #sidebarContent p {
     font-size: 5px;
   }
-  #sidebarContent h2{
+  #sidebarContent h2 {
     font-size: 0.7rem;
   }
   .sidebar.active {
@@ -399,18 +525,22 @@ footer {
   #closeSidebar {
     padding: 10px 15px;
   }
-  .star{
+  .star {
     font-size: 0.8rem;
   }
   .social-icons {
     flex-direction: row;
     align-items: center;
   }
-  .social-icons img {
-    margin: 5px 0;
-  }
   #backToTop {
     padding: 10px 15px;
     font-size: 0.5rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .anime-cards {
+    width: 100%;
   }
 }

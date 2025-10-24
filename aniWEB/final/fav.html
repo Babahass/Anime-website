@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime World - Favorites</title>
+  <link rel="stylesheet" href="favstyle.css">
+  <script src="favscript.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-content container">
+      <div class="logo">
+        <h1>Anime World</h1>
+      </div>
+      <span class="hamburger">☰</span>
+      <nav>
+        <ul>
+          <li><a href="mainpage.html">Home</a></li>
+          <li><a href="#">Popular</a></li>
+          <li><a href="#">Trending</a></li>
+          <li><a href="favorites.html" class="active">Favorites</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search Anime...">
+        <button id="searchButton">🔍</button>
+      </div>
+      <button id="themeToggle">🌙</button>
+    </div>
+  </header>
+
+  <div class="main-container container">
+    <aside class="filters-sidebar">
+      <h3>Genres</h3>
+      <button class="filter-btn" data-genre="">All Genres</button>
+      <button class="filter-btn" data-genre="action">Action</button>
+      <button class="filter-btn" data-genre="thriller">Thriller</button>
+      <button class="filter-btn" data-genre="supernatural">Supernatural</button>
+      <button class="filter-btn" data-genre="adventure">Adventure</button>
+      <button class="filter-btn" data-genre="mystery">Mystery</button>
+      <button class="filter-btn" data-genre="fantasy">Fantasy</button>
+
+      <h3>Sort By</h3>
+      <button class="sort-btn" data-sort="title-asc">Title (A-Z)</button>
+      <button class="sort-btn" data-sort="title-desc">Title (Z-A)</button>
+      <button class="sort-btn" data-sort="rating-desc">Rating (High to Low)</button>
+    </aside>
+
+    <section class="anime-cards" id="favorites-cards">
+      <!-- Favorites will be dynamically loaded here -->
+    </section>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <button id="closeSidebar">×</button>
+    <div id="sidebarContent"></div>
+  </div>
+
+  <button id="backToTop">↑</button>
+
+  <footer>
+    <p>© 2025 My Anime World By Mohammed (Baba). All rights reserved.</p>
+    <div class="social-icons">
+      <!-- Add social icons if needed -->
+    </div>
+  </footer>
+</body>
+</html>
